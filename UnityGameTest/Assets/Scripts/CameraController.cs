@@ -28,7 +28,6 @@ public class CameraController : MonoBehaviour {
         {
             camTurnAngle =
                 Quaternion.AngleAxis((target.transform.rotation.eulerAngles.y - targetLastRotation.eulerAngles.y), Vector3.up);
-       
         }
         else
         {

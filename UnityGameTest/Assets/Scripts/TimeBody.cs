@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeBody : MonoBehaviour {
 
-    public static List<PointInTime> pointsInTime;
+    private List<PointInTime> pointsInTime;
     private bool isRewinding;
     private float maxRewindTime = 15f;
 
@@ -15,17 +15,6 @@ public class TimeBody : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            StartRewind();
-        }
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            StopRewind();
-        }
-    }
     void FixedUpdate ()
     {
         if (isRewinding)
@@ -58,15 +47,19 @@ public class TimeBody : MonoBehaviour {
         }
     }
 
-    void StartRewind()
+    public void StartRewind(GameObject origin)
     {
         isRewinding = true;
         rb.isKinematic = true;
     }
 
-    void StopRewind()
+    public void StopRewind()
     {
         isRewinding = false;
         rb.isKinematic = false;
+    }
+    public bool canRewind()
+    {
+        return pointsInTime.Count > 0;
     }
 }
