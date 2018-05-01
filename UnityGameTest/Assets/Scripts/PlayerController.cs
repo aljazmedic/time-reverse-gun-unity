@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
+    public float XSpeed;
     public float rotationSpeed;
-
+    public Transform offsetLook;
 	// Use this for initialization
 	void Start () {
         //speed = GetComponent<UnityEngine.AI.NavMeshAgent>().speed;
@@ -14,11 +14,18 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float translation = Input.GetAxis("Vertical") * speed;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-        translation *= Time.deltaTime;
+        float translationX = Input.GetAxis("Vertical") * XSpeed;
+        float translationY = Input.GetAxis("Horizontal") * 0.5f * XSpeed;
+        float rotation = Input.GetAxis("Mouse X") * rotationSpeed;
+        translationY *= Time.deltaTime;
+        translationX *= Time.deltaTime;
         rotation *= Time.deltaTime;
-        transform.Translate(0, 0, translation);
+        transform.Translate(translationY, 0, translationX);
         transform.Rotate(0, rotation, 0);
 	}
+
+    public Transform getOffsetLook()
+    {
+        return offsetLook;
+    }
 }
