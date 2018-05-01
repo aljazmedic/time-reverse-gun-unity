@@ -28,7 +28,6 @@ public class TimeBody : MonoBehaviour {
     }
     void FixedUpdate ()
     {
-        Debug.Log(pointsInTime.Count);
         if (isRewinding)
             Rewind();
         else
