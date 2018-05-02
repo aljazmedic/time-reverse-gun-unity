@@ -13,10 +13,15 @@ public class GrenadeThrower : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GameObject grenadeGamoObject = Instantiate(grenadeT, ThrowDir.transform.position, ThrowDir.transform.rotation);
-            Rigidbody rb = grenadeGamoObject.GetComponent<Rigidbody>();
-            rb.AddForce(ThrowDir.transform.up.normalized * throwForce);
-            grenadeGamoObject.GetComponent<GrenadeScript>().delay = delay;
+            Throw();
         }
+    }
+
+    public void Throw()
+    {
+        GameObject grenadeGamoObject = Instantiate(grenadeT, ThrowDir.transform.position, ThrowDir.transform.rotation);
+        Rigidbody rb = grenadeGamoObject.GetComponent<Rigidbody>();
+        rb.AddForce(ThrowDir.transform.up.normalized * throwForce);
+        grenadeGamoObject.GetComponent<GrenadeScript>().delay = delay;
     }
 }

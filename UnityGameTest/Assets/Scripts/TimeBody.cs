@@ -50,7 +50,7 @@ public class TimeBody : MonoBehaviour {
             {
                 Vector3 p0 = origin.transform.position;
                 Vector3 p1 = transform.position;
-                DrawQuadraticCurve(p0, p1, p0 + origin.transform.forward.normalized * Vector3.Distance(p0, p1) * 3 / 4);
+                DrawQuadraticCurve(p0, p1, p0 + origin.transform.forward.normalized * Vector3.Distance(p0, p1)*4/5);
             }
         }
         else

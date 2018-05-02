@@ -856,31 +856,31 @@ Camera:
   m_GameObject: {fileID: 894400963}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.7
-    width: 0.25
-    height: 0.28
-  near clip plane: 11.27
-  far clip plane: 18.3
+    y: 0
+    width: 0.2
+    height: 0.16
+  near clip plane: 12.83
+  far clip plane: 18.41
   field of view: 60
   orthographic: 1
-  orthographic size: 14.2
-  m_Depth: 4.48
+  orthographic size: 11.34
+  m_Depth: 0.26
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
