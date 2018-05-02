@@ -7,12 +7,17 @@ public class TimeBody : MonoBehaviour {
     private List<PointInTime> pointsInTime;
     private bool isRewinding;
     private float maxRewindTime = 15f;
+    private GameObject origin;
+    private LineRenderer lineRenderer;
+    public static int numPoints = 50;
 
     Rigidbody rb;
     void Start(){
-        if(pointsInTime==null)
-            pointsInTime = new List<PointInTime>();
+        pointsInTime = new List<PointInTime>();
         rb = GetComponent<Rigidbody>();
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.SetColors(Color.cyan, Color.white);
+        
     }
 
     void FixedUpdate ()
@@ -40,6 +45,9 @@ public class TimeBody : MonoBehaviour {
             transform.position = pit.position;
             transform.rotation = pit.rotation;
             pointsInTime.Remove(pointsInTime[0]);
+            Vector3 p0 = origin.transform.position;
+            Vector3 p1 = transform.position;
+            DrawQuadraticCurve(p0, p1, p0+origin.transform.forward.normalized*Vector3.Distance(p0, p1));
         }
         else
         {
@@ -47,19 +55,45 @@ public class TimeBody : MonoBehaviour {
         }
     }
 
-    public void StartRewind(GameObject origin)
+    public void StartRewind(GameObject _origin)
     {
+        origin = _origin;
+        lineRenderer.positionCount = numPoints;
         isRewinding = true;
         rb.isKinematic = true;
     }
 
     public void StopRewind()
     {
+        lineRenderer.positionCount = 1;
+        lineRenderer.SetPositions(new Vector3[] { new Vector3(0, 0, 0) });
         isRewinding = false;
         rb.isKinematic = false;
     }
     public bool canRewind()
     {
         return pointsInTime.Count > 0;
+    }
+
+    
+    private void DrawQuadraticCurve(Vector3 p0, Vector3 p1, Vector3 p2)
+    {
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = numPoints;
+        Vector3[] positions = new Vector3[numPoints];
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            float t = i / ((float)numPoints);
+            positions[i] = CalculateQuadraticPoint(t, p0, p1, p2);
+        }
+        lineRenderer.SetPositions(positions);
+    }
+
+    private Vector3 CalculateQuadraticPoint(float t, Vector3 p0, Vector3 p2, Vector3 p1)
+    {
+        float oneminust = 1 - t;
+        Vector3 ret = oneminust * oneminust * p0 + 2 * oneminust * t * p1 + t * t * p2;
+        return ret;
     }
 }
