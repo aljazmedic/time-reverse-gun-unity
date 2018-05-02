@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 894400965}
   - component: {fileID: 894400964}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Minimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,16 +860,16 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.76
-    y: 0.82
+    x: 0
+    y: 0.7
     width: 0.25
-    height: 0.93
-  near clip plane: -67.7
-  far clip plane: 979.39
+    height: 0.28
+  near clip plane: 11.27
+  far clip plane: 18.3
   field of view: 60
   orthographic: 1
   orthographic size: 14.2
-  m_Depth: 0
+  m_Depth: 4.48
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
