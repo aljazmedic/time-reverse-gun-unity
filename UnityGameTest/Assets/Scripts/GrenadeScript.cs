@@ -7,19 +7,26 @@ public class GrenadeScript : MonoBehaviour
     public GameObject explosionEffect;
     public float radius = 5f;
     public float force = 700f;
-    private bool exploded;
+    public float delay = 3f;
+    float countdown;
 	// Use this for initialization
     void Start()
     {
-        exploded = false;
+        countdown = delay;
+    }
+
+    void Update()
+    {
+        countdown -= Time.deltaTime;
+        if (countdown <= 0f)
+        {
+            Explode();
+        }
     }
 
 	// Update is called once per frame
-    void OnTriggerEnter(Collider other)
+    void Explode()
     {
-        if (!exploded)
-        {
-            exploded = true;
             GameObject expl = Instantiate(explosionEffect, transform.position, transform.rotation);
             float time = explosionEffect.GetComponent<ParticleSystem>().duration;
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
@@ -33,6 +40,5 @@ public class GrenadeScript : MonoBehaviour
             }
             Destroy(gameObject);
             Destroy(expl, time);
-        }
     }
 }

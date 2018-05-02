@@ -22,19 +22,21 @@ public class CameraController : MonoBehaviour {
     
 	// Update is called once per frame
 	void LateUpdate () {
-        rotateAroundPlayer = targetLastRotation == target.transform.rotation;
+        //rotateAroundPlayer = targetLastRotation == target.transform.rotation;
 
         if (!rotateAroundPlayer)
         {
             camTurnAngle =
                 Quaternion.AngleAxis((target.transform.rotation.eulerAngles.y - targetLastRotation.eulerAngles.y), Vector3.up);
         }
-        else
+        /*else
         {
-            camTurnAngle =
-                   Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);
-       }
-       offset = camTurnAngle * offset;
+            camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.forward).eulerAngles
+                   
+       }*/
+        //camTurnAngle.eulerAngles += new Vector3(Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * rotationSpeed, -transform.right).eulerAngles.x, 0,0);
+        //Debug.Log(camTurnAngle.eulerAngles);
+        offset = camTurnAngle * offset;
 
         Vector3 desired = target.transform.position + offset;
         Vector3 smoothedPosition = Vector3.Slerp(transform.position, desired, smoothSpeed);

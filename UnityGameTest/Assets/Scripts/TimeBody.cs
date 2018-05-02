@@ -6,18 +6,19 @@ public class TimeBody : MonoBehaviour {
 
     private List<PointInTime> pointsInTime;
     private bool isRewinding;
-    private float maxRewindTime = 15f;
+    private float maxRewindTime = 10f;
     private GameObject origin;
     private LineRenderer lineRenderer;
     public static int numPoints = 50;
+    public bool drawLine = true;
 
     Rigidbody rb;
     void Start(){
         pointsInTime = new List<PointInTime>();
         rb = GetComponent<Rigidbody>();
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.SetColors(Color.cyan, Color.white);
-        
+        lineRenderer.endColor = Color.white;
+        lineRenderer.startColor = Color.cyan;
     }
 
     void FixedUpdate ()
@@ -45,9 +46,12 @@ public class TimeBody : MonoBehaviour {
             transform.position = pit.position;
             transform.rotation = pit.rotation;
             pointsInTime.Remove(pointsInTime[0]);
-            Vector3 p0 = origin.transform.position;
-            Vector3 p1 = transform.position;
-            DrawQuadraticCurve(p0, p1, p0+origin.transform.forward.normalized*Vector3.Distance(p0, p1));
+            if (drawLine)
+            {
+                Vector3 p0 = origin.transform.position;
+                Vector3 p1 = transform.position;
+                DrawQuadraticCurve(p0, p1, p0 + origin.transform.forward.normalized * Vector3.Distance(p0, p1) * 3 / 4);
+            }
         }
         else
         {

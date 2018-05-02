@@ -5,21 +5,20 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    public GameObject grenade;
-    public GameObject spawn;
 
     // Use this for initialization
     void Start()
     {
-
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Instantiate(grenade, spawn.transform.position, Quaternion.identity);
+            Cursor.visible = true;
         }
+        
     }
 }
