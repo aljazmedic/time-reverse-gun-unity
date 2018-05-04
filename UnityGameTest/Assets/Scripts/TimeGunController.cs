@@ -7,7 +7,6 @@ public class TimeGunController : MonoBehaviour {
     private TimeBody target;
     public GameObject origin;
     public float maxDistance = 100f;
-    private int numPoints = 50;
 
 	// Update is called once per frame
 	void Update () {
